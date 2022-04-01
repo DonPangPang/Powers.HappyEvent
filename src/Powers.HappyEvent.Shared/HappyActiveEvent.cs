@@ -10,7 +10,10 @@ namespace Powers.HappyEvent.Shared
     {
         public DateTime? StartTime { get; set; }
         public DateTime? EndTime { get; set; }
-        public bool EnableMark { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool DeleteMark { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        
+        public bool EnableMark { get; set; } = true;
+        public bool DeleteMark { get; set; } = false;
+
+        public ICollection<Guid>? Gifts { get; set; }
     }
 }
