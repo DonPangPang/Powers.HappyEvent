@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D874B0E2-E8C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{91F451FE-9318-4322-9A0B-84E5CCD5495E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Powers.HappyEvent.Wasm", "src\Powers.HappyEvent.Wasm\Powers.HappyEvent.Wasm.csproj", "{69E4DF2C-58EA-4A88-89C1-5B3F600F4302}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Powers.HappyEvent.Wasm", "src\Powers.HappyEvent.Wasm\Powers.HappyEvent.Wasm.csproj", "{69E4DF2C-58EA-4A88-89C1-5B3F600F4302}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Powers.HappyEvent.WebApi", "src\Powers.HappyEvent.WebApi\Powers.HappyEvent.WebApi.csproj", "{7ED394DE-B8AE-4533-8190-46FADB426DE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Powers.HappyEvent.WebApi", "src\Powers.HappyEvent.WebApi\Powers.HappyEvent.WebApi.csproj", "{7ED394DE-B8AE-4533-8190-46FADB426DE6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{09B36EF5-44C2-449D-B829-FFC4789DEA69}"
 	ProjectSection(SolutionItems) = preProject
@@ -18,9 +18,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{CB0A630A-712F-48CA-9266-837E862E86EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Powers.HappyEvent.Shared", "src\Powers.HappyEvent.Shared\Powers.HappyEvent.Shared.csproj", "{A424D3C6-78FB-4683-9BD2-38F132DC9150}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Powers.HappyEvent.Shared", "src\Powers.HappyEvent.Shared\Powers.HappyEvent.Shared.csproj", "{A424D3C6-78FB-4683-9BD2-38F132DC9150}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Powers.HappyEvent.Abstracts", "src\Powers.HappyEvent.Abstracts\Powers.HappyEvent.Abstracts.csproj", "{1BA791EC-B7F4-48E6-A1EA-2C3A1E5C409A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Powers.HappyEvent.Abstracts", "src\Powers.HappyEvent.Abstracts\Powers.HappyEvent.Abstracts.csproj", "{1BA791EC-B7F4-48E6-A1EA-2C3A1E5C409A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Powers.HappyEvent.Extensions", "src\Powers.HappyEvent.Extensions\Powers.HappyEvent.Extensions.csproj", "{7CA2BC47-CF02-4E14-B12A-2C5DEFD82DE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 		{1BA791EC-B7F4-48E6-A1EA-2C3A1E5C409A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BA791EC-B7F4-48E6-A1EA-2C3A1E5C409A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BA791EC-B7F4-48E6-A1EA-2C3A1E5C409A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CA2BC47-CF02-4E14-B12A-2C5DEFD82DE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CA2BC47-CF02-4E14-B12A-2C5DEFD82DE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CA2BC47-CF02-4E14-B12A-2C5DEFD82DE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CA2BC47-CF02-4E14-B12A-2C5DEFD82DE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{7ED394DE-B8AE-4533-8190-46FADB426DE6} = {D874B0E2-E8C7-4483-AB75-AE2FADF0E165}
 		{A424D3C6-78FB-4683-9BD2-38F132DC9150} = {D874B0E2-E8C7-4483-AB75-AE2FADF0E165}
 		{1BA791EC-B7F4-48E6-A1EA-2C3A1E5C409A} = {D874B0E2-E8C7-4483-AB75-AE2FADF0E165}
+		{7CA2BC47-CF02-4E14-B12A-2C5DEFD82DE8} = {D874B0E2-E8C7-4483-AB75-AE2FADF0E165}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {747C3A43-5046-461F-A291-F0D29A404C1B}

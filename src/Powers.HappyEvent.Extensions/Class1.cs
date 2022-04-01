@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Powers.HappyEvent.Shared
+namespace Powers.HappyEvent.Extensions
 {
     public class Class1
     {
