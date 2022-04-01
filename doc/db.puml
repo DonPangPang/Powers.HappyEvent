@@ -1,0 +1,29 @@
+@startuml Database
+
+class User{
+    Guid Id
+    String Name
+    String Password
+    Boolean IsAdmin
+}
+
+class HappyEvent{
+    Guid Id
+    String Name
+    String Description
+    DateTime StartTime
+    DateTime EndTime
+}
+
+class Gift{
+    Guid Id
+    String Name
+    String Description
+    Float Price
+    String Url
+    Int PickCount
+
+    Guid HappyEventId
+}
+
+@enduml
