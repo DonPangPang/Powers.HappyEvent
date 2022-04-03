@@ -22,9 +22,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Powers.HappyEvent.Shared", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Powers.HappyEvent.Abstracts", "src\Powers.HappyEvent.Abstracts\Powers.HappyEvent.Abstracts.csproj", "{1BA791EC-B7F4-48E6-A1EA-2C3A1E5C409A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Powers.HappyEvent.Extensions", "src\Powers.HappyEvent.Extensions\Powers.HappyEvent.Extensions.csproj", "{7CA2BC47-CF02-4E14-B12A-2C5DEFD82DE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Powers.HappyEvent.Extensions", "src\Powers.HappyEvent.Extensions\Powers.HappyEvent.Extensions.csproj", "{7CA2BC47-CF02-4E14-B12A-2C5DEFD82DE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Powers.HappyEvent.MemoryMQ", "src\Powers.HappyEvent.MemoryMQ\Powers.HappyEvent.MemoryMQ.csproj", "{4C1C82C1-48FA-410D-86E3-9474F729B554}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Powers.HappyEvent.MemoryMQ", "src\Powers.HappyEvent.MemoryMQ\Powers.HappyEvent.MemoryMQ.csproj", "{4C1C82C1-48FA-410D-86E3-9474F729B554}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

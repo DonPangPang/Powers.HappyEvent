@@ -3,137 +3,51 @@
 @inject HttpClient HttpClient
 
 <PageContainer Title="@User.Name">
-    <Card>
-        <AntList Class="demo-loadmore-list" DataSource="@data" ItemLayout="ListItemLayout.Horizontal" Loading="@InitLoading">
-            <ChildContent Context="item">
-                <ListItem Actions="actions">
-                    <ListItemMeta Description="@item.Description">
-                        <TitleTemplate>
-                            <a href="https://ant.design">@item.Title</a>
-                        </TitleTemplate>
-                    </ListItemMeta>
-                </ListItem>
-            </ChildContent>
-            <LoadMore>
-                @if (!InitLoading && !Loading)
-                {
-                    <div class="demo-loadmore-btn-content ">
-                        <Button OnClick="OnLoadMore">loading more</Button>
-                    </div>
-                }
-            </LoadMore>
-        </AntList>
-    </Card>
+    @foreach (var item in datas)
+    {
+        <Powers.HappyEvent.Wasm.Components.ActiveEventCard Data="item">
 
-</PageContainer>
-
-<style>
-
-    .demo-loadmore-list {
-        min-height: 400px;
+        </Powers.HappyEvent.Wasm.Components.ActiveEventCard>
     }
+    </PageContainer>
 
-    .demo-loadmore-btn-content {
-        text-align: center;
-        margin-top: 12px;
-        height: 32px;
-        line-height: 32px;
-    }
-</style>
+    <style>
+    </style>
 
-@code
-{
+    @code
+    {
     private User User = new User
         {
             Name = "Hi, 胖纸不争"
         };
 
-    public class BasicItem
+    private IEnumerable<HappyActiveEvent> datas = new List<HappyActiveEvent>()
     {
-        public string Title { get; set; }
-        public string Description { get; set; }
-    }
-
-    public List<BasicItem> data = new List<BasicItem>
-    {
-        new BasicItem { Title = "Ant Design Title 1", Description = "111111111111111111111"},
-        new BasicItem { Title = "Ant Design Title 2", Description = "211111111111111111111"},
-        new BasicItem { Title = "Ant Design Title 3", Description = "311111111111111111111"},
+        new HappyActiveEvent
+        {
+            Name = "抽奖活动1",
+            Description = "抽奖活动",
+        },
+        new HappyActiveEvent
+        {
+            Name = "抽奖活动2",
+            Description = "抽奖活动",
+        },
+        new HappyActiveEvent
+        {
+            Name = "抽奖活动3",
+            Description = "抽奖活动",
+        },
+        new HappyActiveEvent
+        {
+            Name = "抽奖活动4",
+            Description = "抽奖活动",
+        },
+        new HappyActiveEvent
+        {
+            Name = "抽奖活动5",
+            Description = "抽奖活动",
+        },
     };
 
-    public void ItemClick(string title)
-    {
-        Console.WriteLine($"item was clicked: {title}");
-    }
-
-    static RenderFragment edit = @<a key="list-loadmore-edit">edit</a>;
-
-    static RenderFragment add = @<a key="list-loadmore-more">more</a>;
-
-
-    public RenderFragment[] actions = new[] { edit, add };
-
-    public int count = 3;
-
-    public string FakeDataUrl { get { return $"https://randomuser.me/api/?results={count}&inc=name,gender,email,nat&noinfo"; } }
-
-    public List<DataModel> Data { get; set; }
-
-    public bool InitLoading { get; set; } = true;
-
-    public bool Loading { get; set; } = false;
-
-    protected override async Task OnInitializedAsync()
-    {
-        Data = await GetData();
-        InitLoading = false;
-        await base.OnInitializedAsync();
-    }
-
-    public async Task OnLoadMore()
-    {
-        Loading = true;
-        var res = await GetData();
-        Data.AddRange(res);
-        Loading = false;
-    }
-
-    public async Task<List<DataModel>> GetData()
-    {
-        try
-        {
-            var res = await HttpClient.GetFromJsonAsync<Response>(FakeDataUrl);
-            return res.Results;
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex);
-            return new List<DataModel>();
-        }
-    }
-
-    public class Response
-    {
-        public List<DataModel> Results { get; set; }
-    }
-
-    public class DataModel
-    {
-        public string Gender { get; set; }
-
-        public Name Name { get; set; }
-
-        public string Email { get; set; }
-
-        public string Nat { get; set; }
-    }
-
-    public class Name
-    {
-        public string Title { get; set; }
-
-        public string First { get; set; }
-
-        public string Last { get; set; }
-    }
 }

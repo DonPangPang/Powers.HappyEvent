@@ -1,0 +1,21 @@
+﻿@using Powers.HappyEvent.Shared
+<Card class="box" Title="@Data.Name">
+    <Extra>
+        <a>参加>></a>
+    </Extra>
+    <Body>
+        <p>@Data.Description</p>
+    </Body>
+</Card>
+
+<style>
+    .box {
+        border-radius: 20px;
+        margin-bottom: 10px;
+    }
+</style>
+
+@code {
+    [Parameter]
+    public HappyActiveEvent Data { get; set; } = new();
+}
