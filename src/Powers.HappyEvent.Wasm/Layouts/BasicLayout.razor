@@ -1,20 +1,14 @@
 ﻿@namespace Powers.HappyEvent.Wasm
 @inherits LayoutComponentBase
 
-<AntDesign.ProLayout.BasicLayout 
-    Logo="@("https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg")"
-    MenuData="_menuData">
-    <RightContentRender>
-        <Powers.HappyEvent.Wasm.Components.RightContent />
-    </RightContentRender>
-    <ChildContent>
-        @Body
-    </ChildContent>
-    <FooterRender>
-        <FooterView Copyright="2021 Ant Design Blazor" Links="Links"></FooterView>
-    </FooterRender>
-</AntDesign.ProLayout.BasicLayout>
-<SettingDrawer />
+<AntDesign.Layout>
+    <Content>
+        @Body  
+    </Content>
+    <FooterView Copyright="2022 By Powers" Links="Links"></FooterView>
+</AntDesign.Layout>
+
+
 
 @code
 {
@@ -31,26 +25,6 @@
 
     public LinkItem[] Links { get; set; } =
     {
-        new LinkItem
-        {
-            Key = "Ant Design Blazor",
-            Title = "Ant Design Blazor",
-            Href = "https://antblazor.com",
-            BlankTarget = true,
-        },
-        new LinkItem
-        {
-            Key = "github",
-            Title = (RenderFragment)(@<Icon Type="github" />),
-            Href = "https://github.com/ant-design-blazor/ant-design-pro-blazor",
-            BlankTarget = true,
-        },
-        new LinkItem
-        {
-            Key = "Blazor",
-            Title = "Blazor",
-            Href = "https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor?WT.mc_id=DT-MVP-5003987",
-            BlankTarget = true,
-        }
+        
     };
 }
