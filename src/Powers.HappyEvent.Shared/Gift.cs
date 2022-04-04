@@ -8,10 +8,10 @@ namespace Powers.HappyEvent.Shared
 {
     public class Gift : EntityBase, IEnableMark, IDeleteMark
     {
-        public float Price { get; set; }
+        public decimal Price { get; set; }
         public int PickCount { get; set; }
-        public bool EnableMark { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool DeleteMark { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool EnableMark { get; set; } = true;
+        public bool DeleteMark { get; set; } = false;
     
         public Guid? HappyActiveEventId { get; set; }
     }

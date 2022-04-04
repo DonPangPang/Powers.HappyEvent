@@ -1,0 +1,33 @@
+﻿@page "/index"
+@page "/index/{happyEventId:guid}"
+@using Powers.HappyEvent.Shared
+
+<PageContainer Title="礼物清单">
+    <Button Type="@ButtonType.Primary" Style="margin-bottom:10px;">Primary</Button>
+    
+    @foreach(var item in Gifts)
+    {
+        <Powers.HappyEvent.Wasm.Components.GiftCard Gift="@item">
+            
+        </Powers.HappyEvent.Wasm.Components.GiftCard>
+    }
+</PageContainer>
+
+@code {
+    [Parameter]
+    public Guid HappyEventId { get; set; }
+
+    private IEnumerable<Gift> Gifts { get; set; } = new List<Gift>()
+    {
+        new Gift() { Id = Guid.NewGuid(), Name = "Gift 1", Description = "Gift 1 Description", Price = 10.0m, PickCount = 1 },
+        new Gift() { Id = Guid.NewGuid(), Name = "Gift 2", Description = "Gift 2 Description", Price = 20.0m, PickCount = 11 },
+        new Gift() { Id = Guid.NewGuid(), Name = "Gift 3", Description = "Gift 3 Description", Price = 30.0m, PickCount = 111 },
+        new Gift() { Id = Guid.NewGuid(), Name = "Gift 4", Description = "Gift 4 Description", Price = 40.0m, PickCount = 12 },
+        new Gift() { Id = Guid.NewGuid(), Name = "Gift 5", Description = "Gift 5 Description", Price = 50.0m, PickCount = 13 },
+        new Gift() { Id = Guid.NewGuid(), Name = "Gift 6", Description = "Gift 6 Description", Price = 60.0m, PickCount = 14 },
+        new Gift() { Id = Guid.NewGuid(), Name = "Gift 7", Description = "Gift 7 Description", Price = 70.0m, PickCount = 16 },
+        new Gift() { Id = Guid.NewGuid(), Name = "Gift 8", Description = "Gift 8 Description", Price = 80.0m, PickCount = 17 },
+        new Gift() { Id = Guid.NewGuid(), Name = "Gift 9", Description = "Gift 9 Description", Price = 90.0m, PickCount = 18 },
+        new Gift() { Id = Guid.NewGuid(), Name = "Gift 10", Description = "Gift 10 Description", Price = 100.0m, PickCount = 19 },
+    };
+}

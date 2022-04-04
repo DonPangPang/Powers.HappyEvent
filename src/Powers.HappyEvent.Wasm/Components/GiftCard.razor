@@ -1,0 +1,41 @@
+﻿@using Powers.HappyEvent.Shared
+
+<div>
+    <Card Class="box" Title="@Gift.Name">
+        @*<Skeleton Loading="loading" Active>
+
+            </Skeleton>*@
+        <Extra>
+            ￥@Gift.Price
+        </Extra>
+        <ChildContent>
+            <CardMeta Description="@Gift.Description" />
+        </ChildContent>
+        <ActionTemplate>
+            <CardAction>
+                <Text>@Gift.PickCount</Text>
+            </CardAction>
+            <CardAction>
+                <Icon Type="like"></Icon>
+            </CardAction>
+        </ActionTemplate>
+    </Card>
+</div>
+
+<style>
+    .box {
+        border-radius: 20px;
+        margin-bottom: 10px;
+    }
+</style>
+
+@code {
+    [Parameter]
+    public Gift Gift { get; set; } = new();
+
+    bool loading = false;
+    void OnChange()
+    {
+        loading = !loading;
+    }
+}
