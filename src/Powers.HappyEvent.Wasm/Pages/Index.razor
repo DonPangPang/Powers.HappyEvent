@@ -3,7 +3,7 @@
 @using Powers.HappyEvent.Shared
 
 <PageContainer Title="礼物清单">
-    <Button @onclick="@(()=>{ _visible = true; })" Type="@ButtonType.Primary" Style="margin-bottom:10px;width:100%;border-radius:15px;">+</Button>
+    <Button Class="btn-add" @onclick="@(()=>{ _visible = true; })" Type="@ButtonType.Primary">+</Button>
     <Modal Title="添加一个小愿望"
            Visible="@_visible"
            OnOk="@HandleOk"
@@ -33,6 +33,19 @@
         </Powers.HappyEvent.Wasm.Components.GiftCard>
     }
 </PageContainer>
+
+<style>
+    .btn-add{
+        position:fixed;
+        z-index: 1000;
+        width: 50px;
+        height:50px;
+        border-radius: 25px;
+        bottom: 120px;
+        right: 50px;
+    }
+
+</style>
 
 @code {
     [Parameter]
