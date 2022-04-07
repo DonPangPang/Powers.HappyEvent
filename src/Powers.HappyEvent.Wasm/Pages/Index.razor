@@ -3,12 +3,33 @@
 @using Powers.HappyEvent.Shared
 
 <PageContainer Title="礼物清单">
-    <Button Type="@ButtonType.Primary" Style="margin-bottom:10px;">Primary</Button>
-    
-    @foreach(var item in Gifts)
+    <Button @onclick="@(()=>{ _visible = true; })" Type="@ButtonType.Primary" Style="margin-bottom:10px;width:100%;border-radius:15px;">+</Button>
+    <Modal Title="添加一个小愿望"
+           Visible="@_visible"
+           OnOk="@HandleOk"
+           OnCancel="@HandleCancel">
+        <Form Model="@_gift"
+          LabelColSpan="8"
+          WrapperColSpan="16">
+        <FormItem Label="礼物名称">
+            <Input @bind-Value="@context.Name" Placeholder="礼物名称"/>
+        </FormItem>
+        <FormItem  Label="描述">
+            <TextArea @bind-Value="@context.Description" Placeholder="描述" />
+        </FormItem>
+        <FormItem  Label="价格">
+            <Input @bind-Value="@context.Price" Placeholder="价格" />
+        </FormItem>
+    </Form>
+        <Popconfirm Title="Are you sure delete this task?"
+                    OkText="Yes"
+                    CancelText="No">
+        </Popconfirm>
+    </Modal>
+    @foreach (var item in Gifts)
     {
         <Powers.HappyEvent.Wasm.Components.GiftCard Gift="@item">
-            
+
         </Powers.HappyEvent.Wasm.Components.GiftCard>
     }
 </PageContainer>
@@ -16,6 +37,10 @@
 @code {
     [Parameter]
     public Guid HappyEventId { get; set; }
+
+    bool _visible = false;
+
+    private Gift _gift = new();
 
     private IEnumerable<Gift> Gifts { get; set; } = new List<Gift>()
     {
@@ -30,4 +55,21 @@
         new Gift() { Id = Guid.NewGuid(), Name = "Gift 9", Description = "Gift 9 Description", Price = 90.0m, PickCount = 18 },
         new Gift() { Id = Guid.NewGuid(), Name = "Gift 10", Description = "Gift 10 Description", Price = 100.0m, PickCount = 19 },
     };
+
+    private void AddGift()
+    {
+
+    }
+
+    private void HandleOk(MouseEventArgs e)
+    {
+        Console.WriteLine(e);
+        _visible = false;
+    }
+
+    private void HandleCancel(MouseEventArgs e)
+    {
+        Console.WriteLine(e);
+        _visible = false;
+    }
 }
