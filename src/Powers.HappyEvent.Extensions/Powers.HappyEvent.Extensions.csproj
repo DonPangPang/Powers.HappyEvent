@@ -5,4 +5,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Powers.HappyEvent.Abstracts\Powers.HappyEvent.Abstracts.csproj" />
+  </ItemGroup>
+
 </Project>
