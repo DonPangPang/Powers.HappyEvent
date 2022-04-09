@@ -1,7 +1,7 @@
 ﻿@using Powers.HappyEvent.Shared
 @inject NavigationManager NavigationManager
 
-@if (User.IsAdmin)
+@if (IsAdmin)
 {
     <Card class="box" Title="@Data.Name">
         <Extra>
@@ -42,7 +42,7 @@ else
     public HappyActiveEvent Data { get; set; } = new();
 
     [Parameter]
-    public User User{ get; set; } = new();
+    public bool IsAdmin{ get; set; } = false;
 
     protected void NavigateTo()
     {

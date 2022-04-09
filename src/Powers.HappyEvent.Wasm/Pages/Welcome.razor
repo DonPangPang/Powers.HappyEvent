@@ -2,11 +2,14 @@
 @using Powers.HappyEvent.Shared
 @inject HttpClient HttpClient
 
+<Card>
+    登录信息
+</Card>
 <PageContainer Title="@User.Name">
 
     @foreach (var item in datas)
     {
-        <Powers.HappyEvent.Wasm.Components.ActiveEventCard Data="item" User="User">
+        <Powers.HappyEvent.Wasm.Components.ActiveEventCard Data="item" IsAdmin="User.IsAdmin">
 
         </Powers.HappyEvent.Wasm.Components.ActiveEventCard>
     }
