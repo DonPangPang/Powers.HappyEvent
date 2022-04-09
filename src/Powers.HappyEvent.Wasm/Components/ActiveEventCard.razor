@@ -1,13 +1,34 @@
 ﻿@using Powers.HappyEvent.Shared
 @inject NavigationManager NavigationManager
-<Card class="box" Title="@Data.Name">
-    <Extra>
-        <a @onclick="NavigateTo">参加>></a>
-    </Extra>
-    <Body>
-        <p>@Data.Description</p>
-    </Body>
-</Card>
+
+@if (User.IsAdmin)
+{
+    <Card class="box" Title="@Data.Name">
+        <Extra>
+            <a @onclick="NavigateTo">参加>></a>
+        </Extra>
+        <ChildContent>
+            <CardMeta Description="@Data.Description" />
+        </ChildContent>
+
+        <ActionTemplate>
+            <CardAction>
+                <Icon Type="delete" OnClick="()=>{}"></Icon>
+            </CardAction>
+        </ActionTemplate>
+    </Card>
+}
+else
+{
+    <Card class="box" Title="@Data.Name">
+        <Extra>
+            <a @onclick="NavigateTo">参加>></a>
+        </Extra>
+        <ChildContent>
+            <CardMeta Description="@Data.Description" />
+        </ChildContent>
+    </Card>
+}
 
 <style>
     .box {
@@ -20,8 +41,11 @@
     [Parameter]
     public HappyActiveEvent Data { get; set; } = new();
 
+    [Parameter]
+    public User User{ get; set; } = new();
+
     protected void NavigateTo()
     {
-        NavigationManager.NavigateTo($"/index/{Guid.NewGuid()}");
+        NavigationManager.NavigateTo($"/index/{Data.Id}");
     }
 }

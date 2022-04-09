@@ -3,48 +3,119 @@
 @inject HttpClient HttpClient
 
 <PageContainer Title="@User.Name">
+
     @foreach (var item in datas)
     {
-        <Powers.HappyEvent.Wasm.Components.ActiveEventCard Data="item">
+        <Powers.HappyEvent.Wasm.Components.ActiveEventCard Data="item" User="User">
 
         </Powers.HappyEvent.Wasm.Components.ActiveEventCard>
     }
-    </PageContainer>
 
-    <style>
-    </style>
+</PageContainer>
 
-    @code
-    {
-    private User User = new User
+@if(User.IsAdmin)
+{
+    <Button Class="btn-add" @onclick="@(()=>{ _visible = true; })" Type="@ButtonType.Primary">+</Button>
+}
+
+<Modal Title="添加一个小愿望"
+       Visible="@_visible"
+       OnOk="@HandleOk"
+       OnCancel="@HandleCancel">
+    <Form Model="@_happyActiveEvent"
+          LabelColSpan="8"
+          WrapperColSpan="16">
+        <FormItem Label="活动名称">
+            <Input @bind-Value="@context.Name" Placeholder="活动名称" />
+        </FormItem>
+        <FormItem Label="描述">
+            <TextArea @bind-Value="@context.Description" Placeholder="描述" />
+        </FormItem>
+        <FormItem Label="日期" Style="margin-bottom: 0;">
+            <ChildContent>
+                <div style="display:grid;grid-template-columns:45% 1fr 45%;">
+                    <FormItem>
+                        <DatePicker @bind-Value="@context.StartTime" Style="width:100%;"/>
+                    </FormItem>
+                    <span style="text-align:center;">-</span>
+                    <FormItem>
+                        <DatePicker @bind-Value="@context.EndTime" Style="width:100%;" />
+                    </FormItem>
+                </div>
+            </ChildContent>
+        </FormItem>
+    </Form>
+    <Popconfirm Title="Are you sure delete this task?"
+                OkText="Yes"
+                CancelText="No">
+    </Popconfirm>
+</Modal>
+
+
+<style>
+    .btn-add {
+        position: fixed;
+        z-index: 1000;
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+        bottom: 120px;
+        right: 50px;
+    }
+</style>
+
+@code
+{
+    bool _visible = false;
+    private User User = new()
         {
-            Name = "Hi, 胖纸不争"
+            Name = "Hi, 胖纸不争",
+            IsAdmin = true
         };
+
+    private HappyActiveEvent _happyActiveEvent = new();
+
+    private void HandleOk(MouseEventArgs e)
+    {
+        Console.WriteLine(e);
+        _visible = false;
+    }
+
+    private void HandleCancel(MouseEventArgs e)
+    {
+        Console.WriteLine(e);
+        _visible = false;
+    }
 
     private IEnumerable<HappyActiveEvent> datas = new List<HappyActiveEvent>()
     {
         new HappyActiveEvent
         {
+            Id = Guid.Parse("{1C9F9F9F-9F9F-9F9F-9F9F-9F9F9F9F9F9F}"),
             Name = "抽奖活动1",
             Description = "抽奖活动",
         },
         new HappyActiveEvent
         {
+            Id = Guid.Parse("{2C9F9F9F-9F9F-9F9F-9F9F-9F9F9F9F9F9F}"),
             Name = "抽奖活动2",
             Description = "抽奖活动",
         },
         new HappyActiveEvent
         {
+            Id = Guid.Parse("{3C9F9F9F-9F9F-9F9F-9F9F-9F9F9F9F9F9F}"),
             Name = "抽奖活动3",
             Description = "抽奖活动",
         },
         new HappyActiveEvent
         {
+            Id = Guid.Parse("{4C9F9F9F-9F9F-9F9F-9F9F-9F9F9F9F9F9F}"),
             Name = "抽奖活动4",
             Description = "抽奖活动",
         },
         new HappyActiveEvent
         {
+            Id = Guid.Parse("{5C9F9F9F-9F9F-9F9F-9F9F-9F9F9F9F9F9F}"),
             Name = "抽奖活动5",
             Description = "抽奖活动",
         },
