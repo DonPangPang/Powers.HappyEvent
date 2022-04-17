@@ -1,59 +1,90 @@
 ﻿@page "/"
 @using Powers.HappyEvent.Shared
+@using System.Text.Json
 @inject HttpClient HttpClient
 @inject ISyncLocalStorageService localStore
+@inject NotificationService _notice
 
-<Card>
-    登录信息
-</Card>
-<PageContainer Title="@User.Name">
 
-    @foreach (var item in datas)
+@if (!_isLogin)
+{
+
+    <Card Title="登录" Style="margin-top:120px;margin-left:30px;margin-right:30px;">
+        <Form Loading="loading" Model="@login"
+          LabelColSpan="8"
+          WrapperColSpan="16"
+          OnFinish="OnFinish"
+          OnFinishFailed="OnFinishFailed">
+            <FormItem Label="账号">
+                <Input @bind-Value="@context.Username" />
+            </FormItem>
+            <FormItem Label="密码">
+                <InputPassword @bind-Value="@context.Password" />
+            </FormItem>
+            <FormItem WrapperColOffset="8" WrapperColSpan="16">
+                <Button Type="@ButtonType.Primary" HtmlType="submit">
+                    登录
+                </Button>
+                <Button Type="@ButtonType.Default"
+                    Loading="_withIconLoading"
+                    OnClick="OnRegister">
+                    注册
+                </Button>
+            </FormItem>
+        </Form>
+    </Card>
+}
+else
+{
+    <PageContainer Title="@User.Name">
+
+        @foreach (var item in datas)
+        {
+            <Powers.HappyEvent.Wasm.Components.ActiveEventCard Data="item" IsAdmin="User.IsAdmin">
+
+            </Powers.HappyEvent.Wasm.Components.ActiveEventCard>
+        }
+
+    </PageContainer>
+
+    @if (User.IsAdmin)
     {
-        <Powers.HappyEvent.Wasm.Components.ActiveEventCard Data="item" IsAdmin="User.IsAdmin">
-
-        </Powers.HappyEvent.Wasm.Components.ActiveEventCard>
+        <Button Class="btn-add" @onclick="@(()=>{ _visible = true; })" Type="@ButtonType.Primary">+</Button>
     }
 
-</PageContainer>
-
-@if(User.IsAdmin)
-{
-    <Button Class="btn-add" @onclick="@(()=>{ _visible = true; })" Type="@ButtonType.Primary">+</Button>
-}
-
-<Modal Title="添加一个小愿望"
+    <Modal Title="添加一个小愿望"
        Visible="@_visible"
        OnOk="@HandleOk"
        OnCancel="@HandleCancel">
-    <Form Model="@_happyActiveEvent"
+        <Form Model="@_happyActiveEvent"
           LabelColSpan="8"
           WrapperColSpan="16">
-        <FormItem Label="活动名称">
-            <Input @bind-Value="@context.Name" Placeholder="活动名称" />
-        </FormItem>
-        <FormItem Label="描述">
-            <TextArea @bind-Value="@context.Description" Placeholder="描述" />
-        </FormItem>
-        <FormItem Label="日期" Style="margin-bottom: 0;">
-            <ChildContent>
-                <div style="display:grid;grid-template-columns:45% 1fr 45%;">
-                    <FormItem>
-                        <DatePicker @bind-Value="@context.StartTime" Style="width:100%;"/>
-                    </FormItem>
-                    <span style="text-align:center;">-</span>
-                    <FormItem>
-                        <DatePicker @bind-Value="@context.EndTime" Style="width:100%;" />
-                    </FormItem>
-                </div>
-            </ChildContent>
-        </FormItem>
-    </Form>
-    <Popconfirm Title="Are you sure delete this task?"
+            <FormItem Label="活动名称">
+                <Input @bind-Value="@context.Name" Placeholder="活动名称" />
+            </FormItem>
+            <FormItem Label="描述">
+                <TextArea @bind-Value="@context.Description" Placeholder="描述" />
+            </FormItem>
+            <FormItem Label="日期" Style="margin-bottom: 0;">
+                <ChildContent>
+                    <div style="display:grid;grid-template-columns:45% 1fr 45%;">
+                        <FormItem>
+                            <DatePicker @bind-Value="@context.StartTime" Style="width:100%;" />
+                        </FormItem>
+                        <span style="text-align:center;">-</span>
+                        <FormItem>
+                            <DatePicker @bind-Value="@context.EndTime" Style="width:100%;" />
+                        </FormItem>
+                    </div>
+                </ChildContent>
+            </FormItem>
+        </Form>
+        <Popconfirm Title="Are you sure delete this task?"
                 OkText="Yes"
                 CancelText="No">
-    </Popconfirm>
-</Modal>
+        </Popconfirm>
+    </Modal>
+}
 
 
 <style>
@@ -70,12 +101,31 @@
 
 @code
 {
-    bool _visible = false;
+    private bool _visible = false;
+    private bool _isLogin = false;
+    private bool _withIconLoading;
+    private bool _drawerVisible = false;
+
+    private bool IsLogin()
+    {
+        try
+        {
+            var data = localStore.GetItem<User>("happy-login");
+            return data is null;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
     private User User = new()
         {
             Name = "Hi, 胖纸不争",
             IsAdmin = true
         };
+
+    private User login = new();
 
     private HappyActiveEvent _happyActiveEvent = new();
 
@@ -125,4 +175,35 @@
         },
     };
 
+    private void OnFinish(EditContext editContext)
+    {
+        _isLogin = true;
+        Console.WriteLine($"Success:{JsonSerializer.Serialize(login)}");
+    }
+
+    private async Task OnRegister(MouseEventArgs e)
+    {
+        _isLogin = false;
+        Console.WriteLine($"Success:{JsonSerializer.Serialize(login)}");
+        _withIconLoading = true;
+        await Task.Delay(8000);
+        _withIconLoading = false;
+
+        RenderFragment customIcon = @<Icon Type="warning" Theme="outline" Style="color:#ff7875;"></Icon>;
+        await _notice.Open(new NotificationConfig()
+            {
+                Message = "警告",
+                Description = "注册失败",
+                Icon = customIcon
+            });
+    }
+
+    private void OnFinishFailed(EditContext editContext)
+    {
+        Console.WriteLine($"Failed:{JsonSerializer.Serialize(login)}");
+    }
+
+    bool loading = false;
+
+    void toggle(bool value) => loading = value;
 }
