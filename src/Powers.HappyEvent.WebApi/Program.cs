@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Powers.HappyEvent.WebApi.Data;
+using Powers.HappyEvent.WebApi.Extensions;
+using Powers.HappyEvent.WebApi.Manager;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,19 @@ builder.Services.AddDbContext<HappyEventDbContext>(opts =>
 
 builder.Services.AddSession();
 
+builder.Services.AddSingleton<SessionManagerService>();
+
+builder.Services.AddCors(opts =>
+{
+    opts.AddPolicy("Any", builder =>
+    {
+        builder.AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowAnyOrigin();
+    });
+});
+
+
 
 var app = builder.Build();
 
@@ -28,6 +43,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseSession();
+
+app.UseCors("Any");
+app.UseEntity();
 
 app.UseAuthorization();
 

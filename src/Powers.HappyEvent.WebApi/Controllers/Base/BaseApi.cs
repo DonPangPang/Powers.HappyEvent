@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Powers.HappyEvent.Abstracts;
 using Powers.HappyEvent.Shared;
 using Powers.HappyEvent.WebApi.Repository;
@@ -6,6 +7,7 @@ using Powers.HappyEvent.WebApi.Repository;
 namespace Powers.HappyEvent.WebApi.Controllers.Base
 {
     [ApiController]
+    [EnableCors("Any")]
     [Route("api/[controller]/[Action]")]
     public class BaseApi<T>: ControllerBase where T : EntityBase
     {

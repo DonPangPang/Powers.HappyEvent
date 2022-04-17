@@ -2,12 +2,12 @@
 
 namespace Powers.HappyEvent.WebApi.Manager
 {
-    public class SessionManager
+    public class SessionManagerService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private ISession _session => _httpContextAccessor.HttpContext?.Session;
 
-        public SessionManager(IHttpContextAccessor httpContextAccessor)
+        public SessionManagerService(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
         }
