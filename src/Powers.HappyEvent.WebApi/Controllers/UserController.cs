@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Powers.HappyEvent.Shared;
 using Powers.HappyEvent.WebApi.Controllers.Base;
+using Powers.HappyEvent.WebApi.Manager;
 using Powers.HappyEvent.WebApi.Repository;
 
 namespace Powers.HappyEvent.WebApi.Controllers
@@ -9,10 +10,21 @@ namespace Powers.HappyEvent.WebApi.Controllers
     public class UserController : BaseApi<User>
     {
         private readonly IGeneralRepository<User> _generalRepository;
-        
-        public UserController(IGeneralRepository<User> generalRepository) : base(generalRepository)
+        private readonly SessionManagerService _sessionManagerService;
+
+        public UserController(IGeneralRepository<User> generalRepository,
+            SessionManagerService sessionManagerService) : base(generalRepository)
         {
             _generalRepository = generalRepository;
+            _sessionManagerService = sessionManagerService;
+        }
+
+        [HttpGet]
+        public ActionResult LoginUserInfo()
+        {
+            var user = _sessionManagerService.Get<User>("happy-login");
+
+            return Success(user);
         }
 
         [HttpGet]
