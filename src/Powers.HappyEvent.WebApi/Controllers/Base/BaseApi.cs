@@ -21,7 +21,7 @@ namespace Powers.HappyEvent.WebApi.Controllers.Base
         {
             var res = await _generalRepository.FindAll();
 
-            return Ok(res);
+            return Success(res);
         }
 
         [HttpGet]
@@ -29,7 +29,7 @@ namespace Powers.HappyEvent.WebApi.Controllers.Base
         {
             var res = await _generalRepository.FirstOrDefault(id);
 
-            return Ok(res);
+            return Success(res);
         }
 
         [HttpPost]
@@ -37,15 +37,57 @@ namespace Powers.HappyEvent.WebApi.Controllers.Base
         {
             await _generalRepository.Update(entity);
 
-            return NoContent();
+            return Success("更新成功");
         }
 
         [HttpPost]
         public async Task<ActionResult> Create(T entity)
         {
             await _generalRepository.Insert(entity);
-
+            
             return NoContent();
+        }
+
+        [NonAction]
+        public ActionResult Success(object? data = null)
+        {
+            return Ok(new
+            {
+                Code = 200,
+                Data = data
+            });
+        }
+
+        [NonAction]
+        public ActionResult Success(string message = "", object? data = null)
+        {
+            return Ok(new
+            {
+                Code = 200,
+                Message = message,
+                Data = data
+            });
+        }
+
+        [NonAction]
+        public ActionResult Fail(string message = "", object? data = null)
+        {
+            return Ok(new
+            {
+                Code = 400,
+                Message = message,
+                Data = data
+            });
+        }
+
+        [NonAction]
+        public ActionResult Fail( object? data = null)
+        {
+            return Ok(new
+            {
+                Code = 400,
+                Data = data
+            });
         }
     }
 }

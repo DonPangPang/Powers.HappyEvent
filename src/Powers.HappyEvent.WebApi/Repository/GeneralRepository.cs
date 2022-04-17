@@ -19,7 +19,7 @@ namespace Powers.HappyEvent.WebApi.Repository
             Scheel = context.Set<T>();
         }
 
-        public async Task Delete(T entity)
+        public async Task<bool> Delete(T entity)
         {
             if(entity is null)
             {
@@ -28,7 +28,7 @@ namespace Powers.HappyEvent.WebApi.Repository
 
             Scheel.Remove(entity);
 
-            await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync() > 0;
         }
 
         public async Task<IEnumerable<T>> FindAll()
@@ -53,18 +53,18 @@ namespace Powers.HappyEvent.WebApi.Repository
             return Scheel;
         }
 
-        public async Task Insert(T entity)
+        public async Task<bool> Insert(T entity)
         {
             await Scheel.AddAsync(entity);
 
-            await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync() > 0;
         }
 
-        public async Task Update(T entity)
+        public async Task<bool> Update(T entity)
         {
             Scheel.Update(entity);
 
-            await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }
