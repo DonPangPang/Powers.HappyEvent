@@ -22,8 +22,4 @@
     <ProjectReference Include="..\Powers.HappyEvent.Shared\Powers.HappyEvent.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Dtos\" />
-  </ItemGroup>
-
 </Project>

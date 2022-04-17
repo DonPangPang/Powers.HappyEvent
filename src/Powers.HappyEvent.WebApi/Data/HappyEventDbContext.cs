@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Powers.HappyEvent.Abstracts;
 using Powers.HappyEvent.Shared;
 using Powers.HappyEvent.WebApi.Extensions;
 
@@ -12,7 +13,7 @@ namespace Powers.HappyEvent.WebApi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.AddEntityTypes();
+            modelBuilder.AddEntityTypes(typeof(EntityBase));
 
             base.OnModelCreating(modelBuilder);
         }

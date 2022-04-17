@@ -14,12 +14,12 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<HappyEventDbContext>(opts =>
 {
-    opts.UseSqlite("HappyEvent.db");
+    opts.UseSqlite("Data Source=HappyEvent.db");
 });
 
 builder.Services.AddSession();
 
-builder.Services.AddSingleton<SessionManagerService>();
+builder.Services.AddScoped(typeof(SessionManagerService));
 
 builder.Services.AddCors(opts =>
 {
@@ -30,8 +30,6 @@ builder.Services.AddCors(opts =>
             .AllowAnyOrigin();
     });
 });
-
-
 
 var app = builder.Build();
 
@@ -45,10 +43,11 @@ if (app.Environment.IsDevelopment())
 app.UseSession();
 
 app.UseCors("Any");
-app.UseEntity();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+//app.UseEntity();
 
 app.Run();

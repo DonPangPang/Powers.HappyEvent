@@ -19,7 +19,14 @@ namespace Powers.HappyEvent.WebApi.Manager
 
         public T Get<T>(string key)
         {
-            return JsonConvert.DeserializeObject<T>(_session.GetString(key));
+            try
+            {
+                return JsonConvert.DeserializeObject<T>(_session.GetString(key));
+            }
+            catch
+            {
+                return default(T);
+            }
         }
     }
 }
