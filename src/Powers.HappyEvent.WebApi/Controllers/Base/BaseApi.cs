@@ -37,17 +37,27 @@ namespace Powers.HappyEvent.WebApi.Controllers.Base
         [HttpPost]
         public async Task<ActionResult> Update(T entity)
         {
-            await _generalRepository.Update(entity);
-
-            return Success("更新成功");
+            if(await _generalRepository.Update(entity))
+            {
+                return Success("更新成功");
+            }
+            else
+            {
+                return Fail("更新失败");
+            }
         }
 
         [HttpPost]
         public async Task<ActionResult> Create(T entity)
         {
-            await _generalRepository.Insert(entity);
-            
-            return NoContent();
+            if(await _generalRepository.Insert(entity))
+            {
+                return Success("创建成功");
+            }
+            else
+            {
+                return Fail("创建失败");
+            }                
         }
 
         [NonAction]
