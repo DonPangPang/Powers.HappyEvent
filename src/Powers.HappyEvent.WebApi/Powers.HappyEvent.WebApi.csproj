@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -20,6 +20,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Powers.HappyEvent.Abstracts\Powers.HappyEvent.Abstracts.csproj" />
     <ProjectReference Include="..\Powers.HappyEvent.Shared\Powers.HappyEvent.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Dtos\" />
   </ItemGroup>
 
 </Project>
