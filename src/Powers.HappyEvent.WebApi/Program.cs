@@ -15,6 +15,9 @@ builder.Services.AddDbContext<HappyEventDbContext>(opts =>
     opts.UseSqlite("HappyEvent.db");
 });
 
+builder.Services.AddSession();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -23,6 +26,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseSession();
 
 app.UseAuthorization();
 

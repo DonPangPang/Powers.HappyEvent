@@ -49,7 +49,7 @@ namespace Powers.HappyEvent.WebApi.Controllers.Base
         }
 
         [NonAction]
-        public ActionResult Success(object? data = null)
+        public ActionResult Success(object data = null)
         {
             return Ok(new
             {
@@ -59,7 +59,7 @@ namespace Powers.HappyEvent.WebApi.Controllers.Base
         }
 
         [NonAction]
-        public ActionResult Success(string message = "", object? data = null)
+        public ActionResult Success(string message = "", object data = null)
         {
             return Ok(new
             {
@@ -70,7 +70,7 @@ namespace Powers.HappyEvent.WebApi.Controllers.Base
         }
 
         [NonAction]
-        public ActionResult Fail(string message = "", object? data = null)
+        public ActionResult Fail(string message = "", object data = null)
         {
             return Ok(new
             {
@@ -81,7 +81,7 @@ namespace Powers.HappyEvent.WebApi.Controllers.Base
         }
 
         [NonAction]
-        public ActionResult Fail( object? data = null)
+        public ActionResult Fail(object data = null)
         {
             return Ok(new
             {
