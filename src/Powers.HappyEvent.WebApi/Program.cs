@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Powers.HappyEvent.WebApi.Data;
 using Powers.HappyEvent.WebApi.Extensions;
 using Powers.HappyEvent.WebApi.Manager;
+using Powers.HappyEvent.WebApi.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,9 +18,11 @@ builder.Services.AddDbContext<HappyEventDbContext>(opts =>
     opts.UseSqlite("Data Source=HappyEvent.db");
 });
 
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
-
-builder.Services.AddScoped(typeof(SessionManagerService));
+builder.Services.AddSingleton<SessionManagerService>();
+builder.Services.AddScoped(typeof(IGeneralRepository<>), typeof(GeneralRepository<>));
 
 builder.Services.AddCors(opts =>
 {

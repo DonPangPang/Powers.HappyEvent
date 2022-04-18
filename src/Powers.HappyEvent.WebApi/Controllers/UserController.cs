@@ -38,6 +38,8 @@ namespace Powers.HappyEvent.WebApi.Controllers
                 return Fail("用户名或密码错误");
             }
 
+            _sessionManagerService.Set("happy-login", user);
+
             return Success("登录成功", user);
         }
 
