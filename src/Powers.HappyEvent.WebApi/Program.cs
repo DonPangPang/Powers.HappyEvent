@@ -21,7 +21,7 @@ builder.Services.AddDbContext<HappyEventDbContext>(opts =>
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
-builder.Services.AddSingleton<SessionManagerService>();
+builder.Services.AddScoped<SessionManagerService>();
 builder.Services.AddScoped(typeof(IGeneralRepository<>), typeof(GeneralRepository<>));
 
 builder.Services.AddCors(opts =>

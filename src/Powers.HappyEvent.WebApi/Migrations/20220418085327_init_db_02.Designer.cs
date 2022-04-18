@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Powers.HappyEvent.WebApi.Data;
 
@@ -10,9 +11,10 @@ using Powers.HappyEvent.WebApi.Data;
 namespace Powers.HappyEvent.WebApi.Migrations
 {
     [DbContext(typeof(HappyEventDbContext))]
-    partial class HappyEventDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220418085327_init_db_02")]
+    partial class init_db_02
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.3");

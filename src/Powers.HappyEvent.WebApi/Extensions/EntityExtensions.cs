@@ -15,9 +15,11 @@ namespace Powers.HappyEvent.WebApi.Extensions
         
         public static IApplicationBuilder UseEntity(this IApplicationBuilder app)
         {
-            var service = app.ApplicationServices.GetService<SessionManagerService>();
-
-            EntityExtensions.Configure(service);
+            using(var scoped = app.ApplicationServices.CreateScope())
+            {
+                var sessionManagerService = scoped.ServiceProvider.GetService<SessionManagerService>();
+                Configure(sessionManagerService);
+            }
             
             return app;
         }

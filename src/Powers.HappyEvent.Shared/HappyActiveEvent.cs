@@ -14,6 +14,6 @@ namespace Powers.HappyEvent.Shared
         public bool EnableMark { get; set; } = true;
         public bool DeleteMark { get; set; } = false;
 
-        public ICollection<Guid>? Gifts { get; set; }
+        public ICollection<Gift>? Gifts { get; set; }
     }
 }

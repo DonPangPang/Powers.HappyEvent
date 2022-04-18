@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Powers.HappyEvent.Abstracts;
 using Powers.HappyEvent.Shared;
+using Powers.HappyEvent.Shared.Responses;
 using Powers.HappyEvent.WebApi.Repository;
 
 namespace Powers.HappyEvent.WebApi.Controllers.Base
@@ -63,7 +64,7 @@ namespace Powers.HappyEvent.WebApi.Controllers.Base
         [NonAction]
         public ActionResult Success(object data = null)
         {
-            return Ok(new
+            return Ok(new ResponseModel
             {
                 Code = 200,
                 Data = data
@@ -73,7 +74,7 @@ namespace Powers.HappyEvent.WebApi.Controllers.Base
         [NonAction]
         public ActionResult Success(string message = "", object data = null)
         {
-            return Ok(new
+            return Ok(new ResponseModel
             {
                 Code = 200,
                 Message = message,
@@ -84,7 +85,7 @@ namespace Powers.HappyEvent.WebApi.Controllers.Base
         [NonAction]
         public ActionResult Fail(string message = "", object data = null)
         {
-            return Ok(new
+            return Ok(new ResponseModel
             {
                 Code = 400,
                 Message = message,
@@ -95,7 +96,7 @@ namespace Powers.HappyEvent.WebApi.Controllers.Base
         [NonAction]
         public ActionResult Fail(object data = null)
         {
-            return Ok(new
+            return Ok(new ResponseModel
             {
                 Code = 400,
                 Data = data

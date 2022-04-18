@@ -50,7 +50,7 @@ namespace Powers.HappyEvent.WebApi.Repository
 
         public IQueryable<T> GetQueryable()
         {
-            return Scheel;
+            return Scheel.AsQueryable();
         }
 
         public async Task<bool> Insert(T entity)

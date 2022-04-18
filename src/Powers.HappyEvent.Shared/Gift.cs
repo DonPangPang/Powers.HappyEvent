@@ -14,6 +14,7 @@ namespace Powers.HappyEvent.Shared
         public bool DeleteMark { get; set; } = false;
     
         public Guid? HappyActiveEventId { get; set; }
+        public HappyActiveEvent? HappyActiveEvent { get; set; }
 
         public ICollection<PickRecord>? PickRecords { get; set; }
     }
